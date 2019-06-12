@@ -35,7 +35,8 @@ class Movies extends Component {
     try {
       await deleteMovie(movie._id);
     } catch (exp) {
-      if (exp.response && exp.response === 404) {
+      if (exp.response && exp.response.status === 404) {
+        console.log("404");
         toast.error("This movie has been deleted before");
       }
       this.setState({ posts: originalMovies });
